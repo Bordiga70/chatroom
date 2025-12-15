@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mychatroom/data/notifiers.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -9,7 +10,6 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   TextEditingController ipController = TextEditingController();
-
   TextEditingController usernameController = TextEditingController();
 
   @override
@@ -34,7 +34,16 @@ class _LoginPageState extends State<LoginPage> {
               SizedBox(height: 20),
               TextButton(
                 onPressed: () {
-                  print("pressed");
+                  if (ipController.text.isEmpty &&
+                      usernameController.text.isEmpty) {
+                    print("Empty");
+                  } else {
+                    ipNotifier.value = ipController.text;
+                    usernameNotifier.value = usernameController.text;
+
+                    print(ipNotifier.value);
+                    print(usernameNotifier.value);
+                  }
                 },
                 child: Text("Login"),
               ),
